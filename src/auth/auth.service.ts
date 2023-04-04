@@ -8,6 +8,7 @@ import * as bcrypt from 'bcrypt';
 import { User } from './entities/user.entity';
 import { LoginUserDto, CreateUserDto } from './dto';
 import { JwtPayload } from './interfaces/jwt-payload.interface';
+import { CheckAuthStatusResponse, CreateUserResponse, LoginResponse } from './responses';
 
 
 @Injectable()
@@ -35,11 +36,10 @@ export class AuthService {
       await this.userRepository.save( user )
       delete user.password;
 
-      return {
+      return  new CreateUserResponse({
         ...user,
-        token: this.getJwtToken({ id: user.id })
-      };
-      // TODO: Retornar el JWT de acceso
+        token: this.getJwtToken({ id: user.id }),
+      });
 
     } catch (error) {
       this.handleDBErrors(error);
@@ -53,33 +53,32 @@ export class AuthService {
 
     const user = await this.userRepository.findOne({
       where: { email },
-      select: { email: true, password: true, id: true } //! OJO!
+      select: { email: true, password: true, fullName:true, id: true } //! OJO!
     });
 
     if ( !user ) 
-      throw new UnauthorizedException('Credentials are not valid (email)');
+      throw new UnauthorizedException('Credentials are not valid');
       
     if ( !bcrypt.compareSync( password, user.password ) )
-      throw new UnauthorizedException('Credentials are not valid (password)');
+      throw new UnauthorizedException('Credentials are not valid');
 
-    return {
+    delete user.password;
+
+    return new LoginResponse({
       ...user,
       token: this.getJwtToken({ id: user.id })
-    };
+    });
+     
   }
 
   async checkAuthStatus( user: User ){
-
-    return {
+    return new CheckAuthStatusResponse({
       ...user,
       token: this.getJwtToken({ id: user.id })
-    };
-
+    });
   }
 
-
-  
-  private getJwtToken( payload: JwtPayload ) {
+  private getJwtToken( payload: JwtPayload ): string {
     const token = this.jwtService.sign( payload );
     return token;
 

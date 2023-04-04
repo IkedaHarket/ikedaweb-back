@@ -15,8 +15,9 @@ async function bootstrap() {
     })
   );
   const config = new DocumentBuilder()
-    .setTitle('Teslo RESTFul API')
-    .setDescription('Teslo shop endpoints')
+    .addBearerAuth()
+    .setTitle('Ikeda Web Backend')
+    .setDescription('Ikeda web endpoints')
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
