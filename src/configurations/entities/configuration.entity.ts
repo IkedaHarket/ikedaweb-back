@@ -1,5 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-import { Contact, SocialNetwork } from "../class";
+import { Contact, SocialNetwork, WebPageConfiguration } from "../class";
 import { ApiProperty } from "@nestjs/swagger";
 
 
@@ -25,6 +25,11 @@ export class Configuration {
         isArray: true,
     })
     socialNetwork: SocialNetwork[];
-    
+
+    @Column({
+        type: "text"
+    })
+    @ApiProperty()
+    webPage: WebPageConfiguration;
 }
 

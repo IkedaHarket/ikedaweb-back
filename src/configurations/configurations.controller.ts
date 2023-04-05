@@ -27,11 +27,7 @@ export class ConfigurationsController {
   @Get()
   @ApiResponse({ status: 200, description: 'Return the configuration', type: Configuration  })
   findAll() {
-    return this.configurationsService.findAll();
+    return this.configurationsService.find();
   }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.configurationsService.remove(+id);
-  }
+  
 }

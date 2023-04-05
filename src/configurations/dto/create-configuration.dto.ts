@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Contact, SocialNetwork } from "../class";
+import { Contact, SocialNetwork, WebPageConfiguration } from "../class";
 import { IsArray, IsObject } from "class-validator";
 import { Type } from "class-transformer";
 
@@ -17,4 +17,10 @@ export class CreateConfigurationDto {
     })
     @IsArray()
     socialNetwork: SocialNetwork[];
+
+    @ApiProperty({
+        type: WebPageConfiguration
+    })
+    @IsObject()
+    webPage: WebPageConfiguration;
 }
