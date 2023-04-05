@@ -10,7 +10,7 @@ export class CreateSkillDto {
     @ApiProperty()
     @IsString()
     @IsOptional()
-    description:string;
+    description?:string;
 
     @ApiProperty()
     @IsInt()

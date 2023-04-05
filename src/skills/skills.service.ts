@@ -1,15 +1,14 @@
 import { BadRequestException, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
-import { CreateSkillDto } from './dto/create-skill.dto';
-import { UpdateSkillDto } from './dto/update-skill.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Skill } from './entities';
 import { DataSource, Repository } from 'typeorm';
 import { isUUID } from 'class-validator';
+import { CreateSkillDto,UpdateSkillDto } from './dto';
+import { Skill } from './entities';
 
 @Injectable()
 export class SkillsService {
 
-  private readonly logger = new Logger('ProductsService');
+  private readonly logger = new Logger('SkillsService');
 
   constructor(
     @InjectRepository(Skill)
@@ -19,13 +18,9 @@ export class SkillsService {
 
   async create(createSkillDto: CreateSkillDto) {
     try {
-
       const skill = this.skillRepository.create(createSkillDto);
-      
-      await this.skillRepository.save( skill );
-
+      await this.skillRepository.save( skill )
       return skill;
-      
     } catch (error) {
       this.handleDBExceptions(error);
     }
@@ -93,13 +88,9 @@ export class SkillsService {
   }
 
   private handleDBExceptions( error: any ) {
-
     if ( error.code === '23505' )
       throw new BadRequestException(error.detail);
-    
     this.logger.error(error)
-    // console.log(error)
     throw new InternalServerErrorException('Unexpected error, check server logs');
-
   }
 }

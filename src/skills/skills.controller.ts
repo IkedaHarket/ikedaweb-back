@@ -5,8 +5,7 @@ import { Auth } from 'src/auth/decorators';
 import { ValidRoles } from 'src/auth/interfaces';
 import { Skill } from './entities';
 import { SkillsService } from './skills.service';
-import { CreateSkillDto } from './dto/create-skill.dto';
-import { UpdateSkillDto } from './dto/update-skill.dto';
+import { CreateSkillDto,UpdateSkillDto } from './dto';
 import { HttpErrorResponse } from 'src/common/class';
 
 @ApiTags('Skills')
@@ -32,7 +31,7 @@ export class SkillsController {
   }
 
   @Get(':term')
-  @ApiParam({name:"term", description: "By Id or Name"})
+  @ApiParam({name:"term", description: "By Id or Title"})
   @ApiResponse({ status: 200, description: 'Return a Skill', type: Skill})
   @ApiResponse({ status: 404, description: 'Not Found', type: HttpErrorResponse})
   findOne(
@@ -58,7 +57,7 @@ export class SkillsController {
   @Delete(':id')
   @Auth(ValidRoles.admin)
   @ApiBearerAuth()
-  @ApiResponse({ status: 200, description: 'Return a Skill', type: Skill})
+  @ApiResponse({ status: 200, description: 'Delete a Skill'})
   @ApiResponse({ status: 400, description: 'Bad request', type: HttpErrorResponse})
   @ApiResponse({ status: 401, description: 'Unauthorized', type: HttpErrorResponse})
   @ApiResponse({ status: 404, description: 'Not Found', type: HttpErrorResponse})

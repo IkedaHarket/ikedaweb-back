@@ -10,6 +10,7 @@ import { MessagesWsModule } from './messages-ws/messages-ws.module';
 import { SkillsModule } from './skills/skills.module';
 import { FilesModule } from './files/files.module';
 import { WebPagesModule } from './web-pages/web-pages.module';
+import { ConfigurationsModule } from './configurations/configurations.module';
 
 @Module({
   imports: [
@@ -41,6 +42,8 @@ import { WebPagesModule } from './web-pages/web-pages.module';
     MessagesWsModule,
     SkillsModule,
     WebPagesModule,
+    FilesModule,
+    ConfigurationsModule,
   ]
 })
 export class AppModule {}

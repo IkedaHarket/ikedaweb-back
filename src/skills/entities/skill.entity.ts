@@ -30,7 +30,8 @@ export class Skill {
 
     @ApiProperty()
     @Column({
-        type: "text"
+        type: "text",
+        unique:true,
     })
     title:string;
 }
