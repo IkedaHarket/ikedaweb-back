@@ -1,5 +1,6 @@
-import { BeforeInsert, BeforeUpdate, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { BeforeInsert, BeforeUpdate, Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
+import { Album } from 'src/album/entities';
 
 
 @Entity('users')
@@ -38,6 +39,12 @@ export class User {
     })
     roles: string[];
 
+    @OneToMany(
+        () => Album,
+        ( album ) => album.user
+    )
+    album: Album;
+    
     @BeforeInsert()
     checkFieldsBeforeInsert() {
         this.email = this.email.toLowerCase().trim();

@@ -11,6 +11,7 @@ import { SkillsModule } from './skills/skills.module';
 import { FilesModule } from './files/files.module';
 import { WebPagesModule } from './web-pages/web-pages.module';
 import { ConfigurationsModule } from './configurations/configurations.module';
+import { AlbumModule } from './album/album.module';
 
 @Module({
   imports: [
@@ -44,6 +45,7 @@ import { ConfigurationsModule } from './configurations/configurations.module';
     WebPagesModule,
     FilesModule,
     ConfigurationsModule,
+    AlbumModule
   ]
 })
 export class AppModule {}
