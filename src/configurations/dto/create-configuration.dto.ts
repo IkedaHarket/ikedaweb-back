@@ -1,7 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { Contact, SocialNetwork, WebPageConfiguration } from "../class";
-import { IsArray, IsObject } from "class-validator";
-import { Type } from "class-transformer";
+import { IsArray, IsObject, IsString, IsUrl } from "class-validator";
 
 export class CreateConfigurationDto {
 
@@ -23,4 +22,9 @@ export class CreateConfigurationDto {
     })
     @IsObject()
     webPage: WebPageConfiguration;
+
+    @ApiProperty()
+    @IsUrl({},{ each: true })
+    @IsArray()
+    carousel: string[];
 }

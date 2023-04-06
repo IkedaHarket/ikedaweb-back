@@ -31,5 +31,12 @@ export class Configuration {
     })
     @ApiProperty()
     webPage: WebPageConfiguration;
+
+    @Column({
+        type: "text",
+        array:true
+    })
+    @ApiProperty()
+    carousel: string[];
 }
 
