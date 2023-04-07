@@ -12,6 +12,7 @@ import { FilesModule } from './files/files.module';
 import { WebPagesModule } from './web-pages/web-pages.module';
 import { ConfigurationsModule } from './configurations/configurations.module';
 import { AlbumModule } from './album/album.module';
+import { JobsModule } from './jobs/jobs.module';
 
 @Module({
   imports: [
@@ -45,7 +46,8 @@ import { AlbumModule } from './album/album.module';
     WebPagesModule,
     FilesModule,
     ConfigurationsModule,
-    AlbumModule
+    AlbumModule,
+    JobsModule
   ]
 })
 export class AppModule {}

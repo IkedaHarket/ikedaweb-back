@@ -57,7 +57,7 @@ export class AlbumService {
 
     const album = await this.albumRepository.findOneBy({ id });
 
-    if(!album) throw new NotFoundException(`Product with ${ id } not found`);
+    if(!album) throw new NotFoundException(`Album with ${ id } not found`);
 
     return album
   }

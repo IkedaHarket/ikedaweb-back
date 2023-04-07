@@ -34,6 +34,7 @@ export class WebPagesController {
   @Get(':term')
   @ApiParam({name:"term", description: "By Id or Title"})
   @ApiResponse({ status: 200, description: 'Return a Web Page', type: WebPage})
+  @ApiResponse({ status: 400, description: 'Bad request', type: HttpErrorResponse})
   @ApiResponse({ status: 404, description: 'Not Found', type: HttpErrorResponse})
   findOne(@Param('term') term: string) {
     return this.webPagesService.findOne(term);
@@ -42,7 +43,7 @@ export class WebPagesController {
   @Put(':id')
   @Auth(ValidRoles.admin)
   @ApiBearerAuth()
-  @ApiResponse({ status: 200, description: 'Return a Web Page', type: WebPage})
+  @ApiResponse({ status: 200, description: 'Update a Web Page', type: WebPage})
   @ApiResponse({ status: 400, description: 'Bad request', type: HttpErrorResponse})
   @ApiResponse({ status: 401, description: 'Unauthorized', type: HttpErrorResponse})
   @ApiResponse({ status: 404, description: 'Not Found', type: HttpErrorResponse})
