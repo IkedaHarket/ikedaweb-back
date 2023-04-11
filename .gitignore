@@ -3,6 +3,10 @@
 /node_modules
 postgres/
 .env
+/static/assets/albums/*.jpeg
+/static/assets/carousel/*.jpeg
+/static/assets/jobs/*.jpeg
+/static/assets/web-pages/*.jpeg
 
 # Logs
 logs

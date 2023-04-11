@@ -24,6 +24,7 @@ export class AuthController {
 
   @Post('login')
   @ApiResponse({ status: 201, description: 'Login a user', type: LoginResponse})
+  @ApiResponse({ status: 400, description: 'Bad Request', type: HttpErrorResponse})
   @ApiResponse({ status: 401, description: 'Unauthorized', type: HttpErrorResponse})
   loginUser(@Body() loginUserDto: LoginUserDto ) {
     return this.authService.login( loginUserDto );
@@ -32,7 +33,7 @@ export class AuthController {
   @Get('check-status')
   @Auth()
   @ApiBearerAuth()
-  @ApiResponse({ status: 201, description: 'Renew Token', type: CheckAuthStatusResponse})
+  @ApiResponse({ status: 200, description: 'Renew Token', type: CheckAuthStatusResponse})
   @ApiResponse({ status: 403, description: 'Forbidden', type: HttpErrorResponse})
   checkAuthStatus(
     @GetUser() user: User

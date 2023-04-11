@@ -24,7 +24,7 @@ export class CreateConfigurationDto {
     webPage: WebPageConfiguration;
 
     @ApiProperty()
-    @IsUrl({},{ each: true })
+    // @IsUrl({},{ each: true })
     @IsArray()
     carousel: string[];
 }

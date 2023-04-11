@@ -1,28 +1,29 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-interface IntputLoginResponse{
-    id:string;
-    email:string;
-    fullName:string;
-    token:string;
-}
-
 export class LoginResponse{
 
-    constructor({id, email, fullName, token}: IntputLoginResponse) {
-        this.id = id;
-        this.email = email;
-        this.fullName = fullName;
-        this.token = token;
+    constructor({id, email, fullName, isActive, roles, token}: LoginResponse) {
+        this.id = id
+        this.email = email
+        this.fullName = fullName
+        this.isActive = isActive
+        this.roles = roles
+        this.token = token
     }
     @ApiProperty()
-    id:string;
+    id: string;
 
     @ApiProperty()
-    email:string;
+    email: string;
 
     @ApiProperty()
-    fullName:string;
+    fullName: string;
+
+    @ApiProperty()
+    isActive: boolean;
+
+    @ApiProperty()
+    roles: string[];
 
     @ApiProperty()
     token:string;
